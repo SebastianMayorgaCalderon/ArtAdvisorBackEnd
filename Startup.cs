@@ -12,6 +12,10 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
 using Domain;
+using Repositories;
+using AutoMapper;
+
+
 namespace ArtAdvisorBackEnd
 {
     public class Startup
@@ -28,25 +32,25 @@ namespace ArtAdvisorBackEnd
         {
             services.AddDbContext<ArtAdvisorContext>
                (opt => opt.UseSqlServer(Configuration["Data:ArtAdvisorApiDb:ConnectionString"]));
-            // services.AddScoped<IRepositoryWrapper, RepositoryWrapper>(); 
-            // services.AddAutoMapper();
+            services.AddScoped<IRepositoryWrapper, RepositoryWrapper>(); 
+            services.AddAutoMapper();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
-            else
-            {
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
+            // if (env.IsDevelopment())
+            // {
+            //     app.UseDeveloperExceptionPage();
+            // }
+            // else
+            // {
+            //     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+            //     app.UseHsts();
+            // }
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
             app.UseMvc();
         }
     }

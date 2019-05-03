@@ -16,6 +16,7 @@ namespace Domain
         public string Description { get; set; }
         public string ImgUrl { get; set; }
         public double Rate { get; set; }
+        public ArtAdvisorUser MuseumAdmin { get; set; }
         public virtual ICollection<Price> Prices { get; set; }
     }
 }

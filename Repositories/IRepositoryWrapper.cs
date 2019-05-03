@@ -8,5 +8,9 @@ namespace Repositories
         ICommentRepository Comments { get; }
         IArtistRepository Artists { get; }
         IPricesRepository Prices { get; }
+        IScheduleRepository Schedules { get; }
+        IArtPiecesRepository ArtPieces { get; }
+        ITranslationsRepository Translations { get; }
+        void Save ();
     }
 }

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using Domain;
+using Microsoft.EntityFrameworkCore;
+
  
 namespace Repositories
 {
@@ -33,14 +35,13 @@ namespace Repositories
  
         public void Update(T entity)
         {
-            this.artAdvisorcontext.Set<T>().Update(entity);
+            this.artAdvisorcontext.Entry(entity).State = EntityState.Modified;
         }
  
         public void Delete(T entity)
         {
             this.artAdvisorcontext.Set<T>().Remove(entity);
         }
- 
         public void Save()
         {
             this.artAdvisorcontext.SaveChanges();

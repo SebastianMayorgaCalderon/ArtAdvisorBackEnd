@@ -11,6 +11,9 @@ namespace Repositories
         private ICommentRepository _comments;
         private IArtistRepository _artists;
         private IPricesRepository _prices;
+        private IScheduleRepository _schedules;
+        private IArtPiecesRepository _artPieces;
+        private ITranslationsRepository _translations;
 
         public IArtistRepository Artists
         {
@@ -21,6 +24,28 @@ namespace Repositories
                     _artists = new ArtistRepository(_artAdvisorcontext);
                 }
                 return _artists;
+            }
+        }
+        public ITranslationsRepository Translations
+        {
+            get
+            {
+                if(_translations == null)
+                {
+                    _translations =  new TranslationsRepository(_artAdvisorcontext);
+                }
+                return _translations;
+            }
+        }
+        public IArtPiecesRepository ArtPieces
+        {
+            get
+            {
+                if(_artPieces == null)
+                {
+                    _artPieces = new ArtPiecesRepository(_artAdvisorcontext);
+                }
+                return _artPieces;
             }
         }
         public IPricesRepository Prices
@@ -43,6 +68,17 @@ namespace Repositories
                     _comments = new CommentRepository(_artAdvisorcontext);
                 }
                 return _comments;
+            }
+        }
+        public IScheduleRepository Schedules
+        {
+            get
+            {
+                if (_schedules == null)
+                {
+                    _schedules = new ScheduleRepository(_artAdvisorcontext);
+                }
+                return _schedules;
             }
         }
         public IArtAdvisorUserRepository Users
@@ -81,6 +117,9 @@ namespace Repositories
         public RepositoryWrapper(ArtAdvisorContext artAdvisorcontext)
         {
             _artAdvisorcontext = artAdvisorcontext;
+        }
+        public void Save (){
+            _artAdvisorcontext.SaveChanges();
         }
     }
 }

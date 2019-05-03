@@ -4,14 +4,16 @@ using Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ArtAdvisorBackEnd.Migrations
 {
     [DbContext(typeof(ArtAdvisorContext))]
-    partial class ArtAdvisorContextModelSnapshot : ModelSnapshot
+    [Migration("20190503152312_addedMuseumAdmin")]
+    partial class addedMuseumAdmin
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
