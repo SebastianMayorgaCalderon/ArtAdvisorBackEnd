@@ -1,4 +1,5 @@
 using System;
+using MapUtils;
 
 namespace Dtos
 {
@@ -6,8 +7,13 @@ namespace Dtos
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public ArtistDto Author { get; set; }
-        public CategoryDto Type { get; set; }
         public string ImgUrl { get; set; }
+        
+        [NoMap]
+        public string Museum { get;set;}
+        [NoMap]
+        public string Author { get; set; }
+        [NoMap]
+        public string Type { get; set; }
     }
 }
