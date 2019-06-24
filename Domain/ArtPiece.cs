@@ -8,6 +8,7 @@ namespace Domain
 {
     public class ArtPiece
     {
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }

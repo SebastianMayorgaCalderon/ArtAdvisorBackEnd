@@ -7,24 +7,29 @@ namespace ArtAdvisorBackEnd {
   public class Mapper : Profile {
     public Mapper () {
       //DINAMIC WAY
-      CreateMap<Category, CategoryDto> ().IgnoreNoMap ();
-      CreateMap<Artist, ArtistDto> ().IgnoreNoMap ();
-      CreateMap<ArtPiece, ArtPieceDto> ().IgnoreNoMap ();
-      CreateMap<ArtAdvisorUser, ArtAdvisorUserDto> ().IgnoreNoMap ();
-      CreateMap<Museum, MuseumDto> ().IgnoreNoMap ();
+      CreateMap<Category, CategoryDto> ();
+      CreateMap<Artist, ArtistDto> ();
+      CreateMap<ArtPiece, ArtPieceDto> ()
+        .ForMember (destinationMember => destinationMember.Museum,
+          opts => opts.MapFrom (sourceMember => sourceMember.Museum.Id))
+        .ForMember (destinationMember => destinationMember.Type,
+          opts => opts.MapFrom (sourceMember => sourceMember.Type.Id))
+        .ForMember (destinationMember => destinationMember.Author,
+          opts => opts.MapFrom (sourceMember => sourceMember.Author.Id));
+      CreateMap<ArtAdvisorUser, ArtAdvisorUserDto> ();
+      CreateMap<Museum, MuseumDto> ();
 
-      CreateMap<CategoryDto, Category> ().IgnoreNoMap ();
-      CreateMap<ArtistDto, Artist> ().IgnoreNoMap ();
+      CreateMap<CategoryDto, Category> ();
+      CreateMap<ArtistDto, Artist> ();
       CreateMap<ArtPieceDto, ArtPiece> ().
-      IgnoreNoMap ().
       ForMember (destinationMember => destinationMember.Type,
-        opt => opt.MapFrom (src => new ArtPiece { Type = new Category { Id = Guid.Parse (src.Type) } })).
+        opt => opt.MapFrom (src => new ArtPiece { Type = new Category (src.Type) })).
       ForMember (destinationMember => destinationMember.Author,
-        opt => opt.MapFrom (src => new ArtPiece { Author = new Artist { Id = Guid.Parse (src.Author) } })).
+        opt => opt.MapFrom (src => new ArtPiece { Author = new Artist (src.Author) })).
       ForMember (destinationMember => destinationMember.Museum,
-        opt => opt.MapFrom (src => new ArtPiece { Museum = new Museum { Id = Guid.Parse (src.Museum) } }));
-      CreateMap<MuseumDto, Museum> ().IgnoreNoMap ();
-      CreateMap<ArtAdvisorUserDto, ArtAdvisorUser> ().IgnoreNoMap ();
+        opt => opt.MapFrom (src => new ArtPiece { Museum = new Museum (src.Museum) }));
+      CreateMap<MuseumDto, Museum> ();
+      CreateMap<ArtAdvisorUserDto, ArtAdvisorUser> ();
       //TRADITIONAL WAY
       // CreateMap<ArtPiece, ArtPieceDto>(). 
       //     ForMember(x => x.Type, opts => opts.Ignore()).

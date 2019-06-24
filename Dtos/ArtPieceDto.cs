@@ -8,12 +8,8 @@ namespace Dtos
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string ImgUrl { get; set; }
-        
-        [NoMap]
-        public string Museum { get;set;}
-        [NoMap]
-        public string Author { get; set; }
-        [NoMap]
-        public string Type { get; set; }
+        public Guid Museum { get;set;}
+        public Guid Author { get; set; }
+        public Guid Type { get; set; }
     }
 }
